@@ -1,0 +1,52 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/pensum/pensum_list.html
+{% endblock %}
+
+{% block header-link %}
+  <a href={% url 'map_pensum_list' %}>
+    {% trans "Listado de pensums" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "Listado de pensums de maestría." %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url "map_pensum_list" %}>
+            {% trans "Listar pensum" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url "map_pensum_create" %}>
+            {% trans "Crear pensum" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_pensum_archive_index" %}>
+            {% trans "Indice de pensums" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "Pensums" %}
+  </h2>
+  {% include 'map/pensum/object_table_list.html' %}
+  {% include 'map/pensum/pagination.html' %}
+{% endblock %}

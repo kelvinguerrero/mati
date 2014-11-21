@@ -145,13 +145,7 @@
                                 {% for input_ser in op_ser.input_set.all %}
                                     {{ input_ser.name }}
                                 {% endfor %}
-                                {% comment %}<div class="panel panel-default">
-                                  <!-- Default panel contents -->
-                                  <div class="panel-heading">Postcondiciones</div>
-                                  <div class="panel-body">
-                                    <p> {{ op_ser.postconditions }}</p>
-                                  </div>
-                                </div>{% endcomment %}
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -161,19 +155,6 @@
                 </div>
     {% endfor %}
 
-   {% comment %}<tr>
-      <td>
-        created_at
-      </td>
-      <td>{{ object.created_at }}</td>
-    </tr>
-    
-    <tr>
-      <td>
-        updated_at
-      </td>
-      <td>{{ object.updated_at }}</td>
-    </tr>{% endcomment %}
   </tbody>
 
 

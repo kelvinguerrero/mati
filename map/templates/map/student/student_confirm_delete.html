@@ -1,0 +1,69 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/student/student_confirm_delete.html
+{% endblock %}
+
+{% block title %}
+  {% trans "Confirmación de eliminación" %}
+{% endblock %}
+
+{% block header-link %}
+  <a href='{% url map_student_delete pk=object.pk %}'>
+  {% trans "Confirmación de eliminación del estudiante." %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "Confirmación de eliminación del estudiante." %}
+{% endblock %}
+
+{% block sidebar_one %}
+    <li>
+        <a href={% url 'map_student_create' %}>
+            {% trans "Crear estudiante" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_student_update' pk=object.pk %}>
+            {% trans "Editar estudiante" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_student_delete' pk=object.pk %}>
+            {% trans "Borrar estudiante" %}
+        </a>
+    </li>
+{% endblock %}
+
+{% block sidebar_two %}
+
+     <li>
+        <a href={% url "map_student_date_detail" year=object.created_at.year month=object.created_at.month day=object.created_at.day pk=object.pk %}>
+            {% trans "Indice por fechas" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "¿Quiere eliminar esta sección?" %}
+  </h2>
+  <br />
+  {% include 'map/student/object_table_detail.html' %}
+  <form action='' charset='utf-8' method='post'>
+    <fieldset>
+      {% csrf_token %}
+      <div class='form-actions'>
+        <button class='btn btn-danger' type='submit'>
+          {% trans "Borrar" %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

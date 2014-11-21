@@ -1,0 +1,128 @@
+
+
+{% load i18n %}
+
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+      <th>
+        {% trans "Field" %}
+      </th>
+      <th>
+        {% trans "Value" %}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        id
+      </td>
+      <td>
+        <a href='{{ object.get_absolute_url }}'>
+          {{ object.id|stringformat:".3d" }}
+        </a>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        code
+      </td>
+      <td>{{ object.code }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        email
+      </td>
+      <td>{{ object.email }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        lastname
+      </td>
+      <td>{{ object.lastname }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        name
+      </td>
+      <td>{{ object.name }}</td>
+    </tr>
+    
+ {% comment %}   <tr>
+      <td>
+        created_at
+      </td>
+      <td>{{ object.created_at }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        updated_at
+      </td>
+      <td>{{ object.updated_at }}</td>
+    </tr>{% endcomment %}
+    
+  </tbody>
+</table>
+
+<h1>Secciones</h1>
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+
+
+        <th>
+          crn
+        </th>
+
+        <th>
+          name
+        </th>
+
+        <th>
+          semester
+        </th>
+
+        <th>
+          year
+        </th>
+
+        <th>
+          teacher
+        </th>
+
+        <th>
+          course
+        </th>
+
+
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object.section_set.all %}
+      <tr>
+
+
+          <td>{{ object.crn }}</td>
+
+          <td>{{ object.name }}</td>
+
+          <td>{{ object.semester }}</td>
+
+          <td>{{ object.year }}</td>
+
+          <td>{{ object.teacher }}</td>
+
+          <td>{{ object.course }}</td>
+
+
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,80 @@
+
+
+{% extends 'map/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/section/section_form.html
+{% endblock %}
+
+{% block title %}
+  {% if object %}
+    {% trans "Editar seccióm" %}
+  {% else %}
+    {% trans "Crear una nueva sección" %}
+  {% endif %}
+{% endblock %}
+
+{% block header-link %}
+  {% if object %}
+    <a href={% url 'map_section_update' pk=object.pk %}>
+      {% trans "Editar sección" %}
+    </a>
+  {% else %}
+    <a href={% url 'map_section_create' %}>
+      {% trans "Crear sección" %}
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block header-description %}
+  {% if object %}
+    {% trans "Editar sección." %}
+  {% else %}
+    {% trans "Crear sección." %}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url "map_section_list" %}>
+            {% trans "Listar secciones" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_section_create' %}>
+            {% trans "Crear sección" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_section_archive_index" %}>
+            {% trans "Indice de secciones" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <form action={% if object %}{% url 'map_section_update' pk=object.pk %}{% else %}{% url 'map_section_create' %}{% endif %} method='post' encoding='utf-8'>
+    <fieldset>
+      {% csrf_token %}
+      {{ form | bootstrap }}
+      <div class='form-actions'>
+        <button class='btn btn-large btn-success' type='submit'>
+          {% if object %}
+            {% trans "Editar" %}
+          {% else %}
+            {% trans "Crear" %}
+          {% endif %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

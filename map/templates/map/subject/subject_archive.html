@@ -1,0 +1,68 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/subject/subject_archive.html
+{% endblock %}
+{% block title %}
+  {% trans "Subject Archive Index" %}
+{% endblock %}
+{% block breadcrumbs %}
+  <ul class='breadcrumb'>
+    <li>
+      <a href='{% url map_subject_archive_index %}'>
+        {% trans "Archive Index" %}
+      </a>
+    </li>
+  </ul>
+{% endblock %}
+{% block header-link %}
+  <a href='{% url map_subject_archive_index %}'>
+    {% trans "Subject Archive Index" %}
+  </a>
+{% endblock %}
+{% block header-description %}
+  {% trans "A top-level index page showing the latest objects, by date." %}
+{% endblock %}
+
+{% block sidebar_one %}
+    <li>
+        <a href={% url 'map_subject_create' %}>
+            {% trans "Crear registro de nota" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_course_archive_index" %}>
+            {% trans "Indice de registros" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    By Year
+  </h2>
+  <ul class='nav nav-tabs nav-stacked'>
+    {% for date in date_list %}
+      <li>
+        <a href='{% url map_subject_year_archive year=date.year %}'>
+          {{ date.year }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <h2>
+    {% trans "Recent Subjects" %}
+  </h2>
+  {% include 'map/subject/object_table_list.html' %}
+  {% include 'map/subject/pagination.html' %}
+{% endblock %}

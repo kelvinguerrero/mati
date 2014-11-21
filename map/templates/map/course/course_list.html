@@ -1,0 +1,52 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/course/course_list.html
+{% endblock %}
+
+{% block header-link %}
+  <a href={% url 'map_course_list' %}>
+    {% trans "Cursos" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "Listado de los cursos del departamento" %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url "map_course_list" %}>
+            {% trans "Listar cursos" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url "map_course_create" %}>
+            {% trans "Crear cursos" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_course_archive_index" %}>
+            {% trans "Indice de cursos" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "Cursos" %}
+  </h2>
+  {% include 'map/course/object_table_list.html' %}
+  {% include 'map/course/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/section/section_list.html
+{% endblock %}
+
+{% block header-link %}
+  <a href={% url 'map_section_list' %}>
+    {% trans "Listado de secciones" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "Listado de secciones de maestría." %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url 'map_section_list' %}>
+            {% trans "Listar pensum" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_section_create' %}>
+            {% trans "Crear sección" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url 'map_section_archive_index' %}>
+            {% trans "Indice de secciones" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "Secciones" %}
+  </h2>
+  {% include 'map/section/object_table_list.html' %}
+  {% include 'map/section/pagination.html' %}
+{% endblock %}

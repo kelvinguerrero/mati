@@ -1,0 +1,76 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/course/course_archive_year.html
+{% endblock %}
+
+{% block breadcrumbs %}
+  <ul class='breadcrumb'>
+    <li>
+      <a href={% url 'map_course_archive_index' %}>
+        {% trans "Indice de cursos" %}
+      </a>
+      <span class='divider'>
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_course_year_archive' year=year.year %}>
+        {% trans "Year Archive" %}
+      </a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block header-link %}
+  <a href={% url 'map_course_year_archive' year=year.year %}>
+    {% trans "Course Year Archive" %}
+  </a>
+{% endblock %}
+{% block header-description %}
+  {% trans "A yearly archive page showing all available months in a given year." %}
+{% endblock %}
+
+{% block sidebar_one %}
+    <li>
+        <a href={% url 'map_course_create' %}>
+            {% trans "Crear curso" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_course_archive_index" %}>
+            {% trans "Indice de cursos" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "By Month" %}
+  </h2>
+  <ul class='nav nav-tabs nav-stacked'>
+    {% for date in date_list %}
+      <li>
+        <a href={% url 'map_course_month_archive' year=date.year month=date.month %}>
+          {{ date|date:"M Y" }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <h2>
+    {% blocktrans %}
+      Courses created in the year {{ year }}
+    {% endblocktrans %}
+  </h2>
+  {% include 'map/course/object_table_list.html' %}
+  {% include 'map/course/pagination.html' %}
+{% endblock %}

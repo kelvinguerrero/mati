@@ -1,0 +1,31 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/teacher/teacher_archive_week.html
+{% endblock %}
+
+{% block title %}
+  {% trans "Teacher Week Archive" %}
+{% endblock %}
+
+{% block header-link %}
+  {% trans "Teacher Week Archive" %}
+{% endblock %}
+
+{% block header-description %}
+  {% trans "A weekly archive page showing all objects in a given week." %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% blocktrans %}
+      Teachers created during the week beginning on {{ week }}
+    {% endblocktrans %}
+  </h2>
+  {% include 'map/teacher/object_table_list.html' %}
+  {% include 'map/teacher/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,80 @@
+
+
+{% extends 'map/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/student/student_form.html
+{% endblock %}
+
+{% block title %}
+  {% if object %}
+    {% trans "Editar estudiante" %}
+  {% else %}
+    {% trans "Crear un nuevo estudiante" %}
+  {% endif %}
+{% endblock %}
+
+{% block header-link %}
+  {% if object %}
+    <a href={% url 'map_student_update' pk=object.pk %}>
+      {% trans "Editar estudiante" %}
+    </a>
+  {% else %}
+    <a href={% url 'map_student_create' %}>
+      {% trans "Crear estudiante" %}
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block header-description %}
+  {% if object %}
+    {% trans "Editar estudiante." %}
+  {% else %}
+    {% trans "Crear estudiante." %}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url 'map_student_list' %}>
+            {% trans "Listar estudiantes" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_student_create' %}>
+            {% trans "Crear estudiante" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url 'map_student_archive_index' %}>
+            {% trans "Indice de estudiantes" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <form action={% if object %}{% url 'map_student_update' pk=object.pk %}{% else %}{% url 'map_student_create'%}{% endif %} method='post' encoding='utf-8'>
+    <fieldset>
+      {% csrf_token %}
+      {{ form | bootstrap }}
+      <div class='form-actions'>
+        <button class='btn btn-large btn-success' type='submit'>
+          {% if object %}
+            {% trans "Editar" %}
+          {% else %}
+            {% trans "Crear" %}
+          {% endif %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

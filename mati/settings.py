@@ -39,11 +39,12 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'bootstrapform',
     'dimaps',
+    'map',
     'home',
     'south',
 
     #'django_extensions', #python manage.py show_urls
-#    'generate_scaffold',
+    'generate_scaffold',
 )
 
 

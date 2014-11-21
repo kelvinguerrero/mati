@@ -1,0 +1,80 @@
+
+
+{% extends 'map/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/course/course_form.html
+{% endblock %}
+
+{% block title %}
+  {% if object %}
+    {% trans "Editar curso" %}
+  {% else %}
+    {% trans "Crear un nuevo curso" %}
+  {% endif %}
+{% endblock %}
+
+{% block header-link %}
+  {% if object %}
+    <a href={% url 'map_course_update' pk=object.pk %}>
+      {% trans "Editar curso" %}
+    </a>
+  {% else %}
+    <a href={% url 'map_course_create' %}>
+      {% trans "Crear curso" %}
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block header-description %}
+  {% if object %}
+    {% trans "Editar curso." %}
+  {% else %}
+    {% trans "Crear curso." %}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url "map_course_list" %}>
+            {% trans "Listar cursos" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_course_create' %}>
+            {% trans "Crear curso" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_course_archive_index" %}>
+            {% trans "Indice de cursos" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <form action={% if object %}{% url 'map_course_update' pk=object.pk %}{% else %}{% url 'map_course_create' %}{% endif %} method='post' encoding='utf-8'>
+    <fieldset>
+      {% csrf_token %}
+      {{ form | bootstrap }}
+      <div class='form-actions'>
+        <button class='btn btn-large btn-success' type='submit'>
+          {% if object %}
+            {% trans "Editar" %}
+          {% else %}
+            {% trans "Crear" %}
+          {% endif %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

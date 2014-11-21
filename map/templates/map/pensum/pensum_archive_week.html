@@ -1,0 +1,50 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/pensum/pensum_archive_week.html
+{% endblock %}
+
+{% block title %}
+  {% trans "Pensum Week Archive" %}
+{% endblock %}
+
+{% block header-link %}
+  {% trans "Pensum Week Archive" %}
+{% endblock %}
+
+{% block header-description %}
+  {% trans "A weekly archive page showing all objects in a given week." %}
+{% endblock %}
+
+{% block sidebar_one %}
+    <li>
+        <a href={% url 'map_pensum_create' %}>
+            {% trans "Crear pensum" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_pensum_archive_index" %}>
+            {% trans "Indice de pensums" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% blocktrans %}
+      Pensums created during the week beginning on {{ week }}
+    {% endblocktrans %}
+  </h2>
+  {% include 'map/pensum/object_table_list.html' %}
+  {% include 'map/pensum/pagination.html' %}
+{% endblock %}

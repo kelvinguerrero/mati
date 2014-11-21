@@ -1,0 +1,52 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/student/student_list.html
+{% endblock %}
+
+{% block header-link %}
+  <a href={% url 'map_student_list' %}>
+    {% trans "Listado de estudiantes" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "Listado de estudiantes de maestría." %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url 'map_student_list' %}>
+            {% trans "Listar estudiantes" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_student_create' %}>
+            {% trans "Crear estudiante" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url 'map_student_archive_index' %}>
+            {% trans "Indice de estudiantes" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "Estudiantes" %}
+  </h2>
+  {% include 'map/student/object_table_list.html' %}
+  {% include 'map/student/pagination.html' %}
+{% endblock %}

@@ -1,0 +1,70 @@
+{% load i18n %}
+
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+      <th>
+        {% trans "Campo" %}
+      </th>
+      <th>
+        {% trans "Valor" %}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>
+        codigo
+      </td>
+      <td>{{ object.code }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        email
+      </td>
+      <td>{{ object.email }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        apellido
+      </td>
+      <td>{{ object.lastname }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        nombre
+      </td>
+      <td>{{ object.name }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        student_status
+      </td>
+      <td>{{ object.student_status }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        total_approved_credits
+      </td>
+      <td>{{ object.total_approved_credits }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        total_credits_actual_semester
+      </td>
+      <td>{{ object.total_credits_actual_semester }}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+{% for object in object.subject_set.all %}
+        {{ object.section.name }} : {{ object.section.course.name }}
+{% endfor %}

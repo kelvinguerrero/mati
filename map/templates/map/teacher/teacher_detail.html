@@ -1,0 +1,112 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/teacher/teacher_detail.html
+{% endblock %}
+
+{% block title %}
+  {% trans "Teacher Detail" %}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+  <ul class='breadcrumb'>
+    <li>
+      <a href={% url 'map_teacher_archive_index' %}>
+        {% trans "Archive Index" %}
+      </a>
+      <span class='divider'>
+        /
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_teacher_year_archive' year=object.created_at.year %}>
+        {% trans "Year Archive" %}
+      </a>
+      <span class='divider'>
+        /
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_teacher_month_archive' year=object.created_at.year month=object.created_at.month %}>
+        {% trans "Month Archive" %}
+      </a>
+      <span class='divider'>
+        /
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_teacher_day_archive' year=object.created_at.year month=object.created_at.month day=object.created_at.day %}>
+        {% trans "Day Archive" %}
+      </a>
+      <span class='divider'>
+        /
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_teacher_date_detail' year=object.created_at.year month=object.created_at.month day=object.created_at.day pk=object.pk %}>
+        {% trans "Date Detail" %}
+      </a>
+    </li>
+  </ul>
+{% endblock %}
+
+
+{% block header-link %}
+  <a href='{{ object.get_absolute_url }}'>
+    {% trans "Teacher Detail" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "A page representing an individual object." %}
+{% endblock %}
+
+{% block sidebar_one %}
+    <li>
+        <a href={% url 'map_teacher_create' %}>
+            {% trans "Crear profesor" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_teacher_update' pk=object.pk %}>
+            {% trans "Editar profesor" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_teacher_delete' pk=object.pk %}>
+            {% trans "Borrar profesot" %}
+        </a>
+    </li>
+{% endblock %}
+
+{% block sidebar_two %}
+
+     <li>
+        <a href={% url "map_teacher_date_detail" year=object.created_at.year month=object.created_at.month day=object.created_at.day pk=object.pk %}>
+            {% trans "Indice por profesor" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  {% include 'map/teacher/object_table_detail.html' %}
+  <form action={% url 'map_teacher_delete' pk=object.pk %} charset='utf-8' method='post'>
+    <fieldset>
+      {% csrf_token %}
+      <div class='form-actions'>
+        <a class='btn btn-success' href={% url 'map_teacher_update' pk=object.pk %}>
+          {% trans "Update" %}
+        </a>
+        <button class='btn btn-danger' type='submit'>
+          {% trans "Delete" %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

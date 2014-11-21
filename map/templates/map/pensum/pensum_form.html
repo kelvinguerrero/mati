@@ -1,0 +1,80 @@
+
+
+{% extends 'map/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/pensum/pensum_form.html
+{% endblock %}
+
+{% block title %}
+  {% if object %}
+    {% trans "Editar pensum" %}
+  {% else %}
+    {% trans "Crear un nuevo pensum" %}
+  {% endif %}
+{% endblock %}
+
+{% block header-link %}
+  {% if object %}
+    <a href={% url 'map_pensum_update' pk=object.pk %}>
+      {% trans "Editar pensum" %}
+    </a>
+  {% else %}
+    <a href={% url 'map_pensum_create' %}>
+      {% trans "Crear pensum" %}
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block header-description %}
+  {% if object %}
+    {% trans "Editar pensum." %}
+  {% else %}
+    {% trans "Crear pensum." %}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url "map_pensum_list" %}>
+            {% trans "Listar pensums" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_pensum_create' %}>
+            {% trans "Crear pensum" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url "map_pensum_archive_index" %}>
+            {% trans "Indice de pensum" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <form action={% if object %}{% url 'map_pensum_update' pk=object.pk %}{% else %}{% url 'map_pensum_create' %}{% endif %} method='post' encoding='utf-8'>
+    <fieldset>
+      {% csrf_token %}
+      {{ form | bootstrap }}
+      <div class='form-actions'>
+        <button class='btn btn-large btn-success' type='submit'>
+          {% if object %}
+            {% trans "Editar" %}
+          {% else %}
+            {% trans "Crear" %}
+          {% endif %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

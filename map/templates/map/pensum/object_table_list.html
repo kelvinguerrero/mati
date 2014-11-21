@@ -1,0 +1,38 @@
+
+
+{% load i18n %}
+
+<p>
+  {% trans "Click en el nombre del pensum para acceder a los detalles." %}
+</p>
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+
+        <th>
+          nombre
+        </th>
+      
+        <th>
+          Activo
+        </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      <tr>
+
+          <td>
+            <a href='{{ object.get_absolute_url }}'>
+                {{ object.name}}
+            </a>
+          </td>
+        
+          <td>{{ object.active }}</td>
+
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

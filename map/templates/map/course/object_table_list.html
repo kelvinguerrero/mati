@@ -1,0 +1,59 @@
+
+
+{% load i18n %}
+
+<p>
+  {% trans "Click en el codigo del curso para acceder a los detalles." %}
+</p>
+
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+      
+        <th>
+          codigo
+        </th>
+      
+        <th>
+          creditos
+        </th>
+      
+        <th>
+          nombre
+        </th>
+      
+        <th>
+          vacaciónes
+        </th>
+      
+        <th>
+          pensum
+        </th>
+
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      <tr>
+
+          <td>
+            <a href='{{ object.get_absolute_url }}'>
+                {{ object.code }}
+            </a>
+          </td>
+        
+          <td>{{ object.credits }}</td>
+        
+          <td>{{ object.name }}</td>
+        
+          <td>{{ object.summer }}</td>
+        
+          <td>{{ object.pensum.name }}</td>
+
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+

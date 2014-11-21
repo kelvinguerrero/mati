@@ -1,0 +1,80 @@
+
+
+{% extends 'map/base.html' %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/subject/subject_form.html
+{% endblock %}
+
+{% block title %}
+  {% if object %}
+    {% trans "Update Subject" %}
+  {% else %}
+    {% trans "Create a New Subject" %}
+  {% endif %}
+{% endblock %}
+
+{% block header-link %}
+  {% if object %}
+    <a href={% url 'map_subject_update' pk=object.pk %}>
+      {% trans "Subject Update" %}
+    </a>
+  {% else %}
+    <a href={% url 'map_subject_create' %}>
+      {% trans "Subject Create" %}
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block header-description %}
+  {% if object %}
+    {% trans "A view that displays a form for editing an existing object." %}
+  {% else %}
+    {% trans "A view that displays a form for creating an object." %}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url 'map_subject_list' %}>
+            {% trans "Listar registros" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_subject_create' %}>
+            {% trans "Crear registros" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url 'map_subject_archive_index' %}>
+            {% trans "Indice de registros" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <form action={% if object %}{% url 'map_subject_update' pk=object.pk %}{% else %}{% url 'map_subject_create' %}{% endif %} method='post' encoding='utf-8'>
+    <fieldset>
+      {% csrf_token %}
+      {{ form | bootstrap }}
+      <div class='form-actions'>
+        <button class='btn btn-large btn-success' type='submit'>
+          {% if object %}
+            {% trans "Update" %}
+          {% else %}
+            {% trans "Create" %}
+          {% endif %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

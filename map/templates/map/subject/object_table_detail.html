@@ -1,0 +1,71 @@
+
+
+{% load i18n %}
+
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+      <th>
+        {% trans "Field" %}
+      </th>
+      <th>
+        {% trans "Value" %}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        id
+      </td>
+      <td>
+        <a href='{{ object.get_absolute_url }}'>
+          {{ object.id|stringformat:".3d" }}
+        </a>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        grade
+      </td>
+      <td>{{ object.grade }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        student_status
+      </td>
+      <td>{{ object.student_status }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        student
+      </td>
+      <td>{{ object.student }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        section
+      </td>
+      <td>{{ object.section }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        created_at
+      </td>
+      <td>{{ object.created_at }}</td>
+    </tr>
+    
+    <tr>
+      <td>
+        updated_at
+      </td>
+      <td>{{ object.updated_at }}</td>
+    </tr>
+    
+  </tbody>
+</table>

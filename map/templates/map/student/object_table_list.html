@@ -1,0 +1,67 @@
+
+
+{% load i18n %}
+
+<p>
+  {% trans "Click en el código del estudiante para acceder a los detalles." %}
+</p>
+<table class='table table-bordered table-striped'>
+  <thead>
+    <tr>
+
+        <th>
+          code
+        </th>
+      
+        <th>
+          email
+        </th>
+      
+        <th>
+          lastname
+        </th>
+      
+        <th>
+          name
+        </th>
+      
+        <th>
+          student_status
+        </th>
+      
+        <th>
+          total_approved_credits
+        </th>
+      
+        <th>
+          total_credits_actual_semester
+        </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for object in object_list %}
+      <tr>
+
+          <td>
+            <a href='{{ object.get_absolute_url }}'>
+            {{ object.code|stringformat:".3d" }}
+            </a>
+          </td>
+        
+          <td>{{ object.email }}</td>
+        
+          <td>{{ object.lastname }}</td>
+        
+          <td>{{ object.name }}</td>
+        
+          <td>{{ object.student_status }}</td>
+        
+          <td>{{ object.total_approved_credits }}</td>
+        
+          <td>{{ object.total_credits_actual_semester }}</td>
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

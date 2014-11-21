@@ -1,0 +1,31 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/subject/subject_archive_week.html
+{% endblock %}
+
+{% block title %}
+  {% trans "Subject Week Archive" %}
+{% endblock %}
+
+{% block header-link %}
+  {% trans "Subject Week Archive" %}
+{% endblock %}
+
+{% block header-description %}
+  {% trans "A weekly archive page showing all objects in a given week." %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% blocktrans %}
+      Subjects created during the week beginning on {{ week }}
+    {% endblocktrans %}
+  </h2>
+  {% include 'map/subject/object_table_list.html' %}
+  {% include 'map/subject/pagination.html' %}
+{% endblock %}

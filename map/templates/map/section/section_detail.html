@@ -1,0 +1,108 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/section/section_detail.html
+{% endblock %}
+
+{% block title %}
+  {% trans "Detalles de la sección" %}
+{% endblock %}
+
+
+{% block breadcrumbs %}
+  <ul class='breadcrumb'>
+    <li>
+      <a href={% url 'map_section_archive_index' %}>
+        {% trans "Archive Index" %}
+      </a>
+      <span class='divider'>
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_section_year_archive' year=object.created_at.year %}>
+        {% trans "Year Archive" %}
+      </a>
+      <span class='divider'>
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_section_month_archive' year=object.created_at.year month=object.created_at.month %}>
+        {% trans "Month Archive" %}
+      </a>
+      <span class='divider'>
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_section_day_archive' year=object.created_at.year month=object.created_at.month day=object.created_at.day %}>
+        {% trans "Day Archive" %}
+      </a>
+      <span class='divider'>
+      </span>
+    </li>
+    <li>
+      <a href={% url 'map_section_date_detail' year=object.created_at.year month=object.created_at.month day=object.created_at.day pk=object.pk %}>
+        {% trans "Date Detail" %}
+      </a>
+    </li>
+  </ul>
+{% endblock %}
+
+
+{% block header-link %}
+  <a href='{{ object.get_absolute_url }}'>
+    {% trans "Detalles de la sección" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "Información detallada de la sección." %}
+{% endblock %}
+
+{% block sidebar_one %}
+    <li>
+        <a href={% url 'map_section_create' %}>
+            {% trans "Crear sección" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_section_update' pk=object.pk %}>
+            {% trans "Editar sección" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_section_delete' pk=object.pk %}>
+            {% trans "Borrar sección" %}
+        </a>
+    </li>
+{% endblock %}
+
+{% block sidebar_two %}
+
+     <li>
+        <a href={% url "map_section_date_detail" year=object.created_at.year month=object.created_at.month day=object.created_at.day pk=object.pk %}>
+            {% trans "Indice por secciones" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  {% include 'map/section/object_table_detail.html' %}
+  <form action={% url 'map_section_delete' pk=object.pk %} charset='utf-8' method='post'>
+    <fieldset>
+      {% csrf_token %}
+      <div class='form-actions'>
+        <a class='btn btn-success' href={% url 'map_section_update' pk=object.pk %}>
+          {% trans "Editar" %}
+        </a>
+        <button class='btn btn-danger' type='submit'>
+          {% trans "Borrar" %}
+        </button>
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}

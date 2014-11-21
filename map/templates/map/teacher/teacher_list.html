@@ -1,0 +1,52 @@
+
+
+{% extends 'map/base.html' %}
+
+{% load i18n %}
+
+{% block filename %}
+  /home/kelvin/PycharmProjects/matienv/proyects/mati/map/templates/map/teacher/teacher_list.html
+{% endblock %}
+
+{% block header-link %}
+  <a href={% url 'map_teacher_list' %}>
+    {% trans "Teacher List" %}
+  </a>
+{% endblock %}
+
+{% block header-description %}
+  {% trans "A page representing a list of objects." %}
+{% endblock %}
+
+{% block sidebar_one %}
+
+    <li>
+        <a href={% url 'map_teacher_list' %}>
+            {% trans "Listar profesores" %}
+        </a>
+    </li>
+    <li>
+        <a href={% url 'map_teacher_create' %}>
+            {% trans "Crear profesor" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block sidebar_two %}
+
+    <li>
+        <a href={% url 'map_teacher_archive_index' %}>
+            {% trans "Indice de profesores" %}
+        </a>
+    </li>
+
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans "Teachers" %}
+  </h2>
+  {% include 'map/teacher/object_table_list.html' %}
+  {% include 'map/teacher/pagination.html' %}
+{% endblock %}
